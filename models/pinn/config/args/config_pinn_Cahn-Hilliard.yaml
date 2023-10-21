@@ -1,0 +1,16 @@
+model_name: 'PINN'
+scenario: 'pde1D'
+model_update: 500
+filename: '1D_Cahn-Hilliard_10e-6_0.01.hdf5'
+epochs: 15000
+input_ch: 2
+output_ch: 1
+learning_rate: 1.e-3
+root_path: '/data1/zhouziyang/datasets/pdebench/1D/Cahn-Hilliard/'
+val_num: 2
+if_periodic_bc: True
+period: 5000
+val_time: 1.0
+val_batch_idx: 10
+aux_params: [10e-6, 0.01]
+seed: '0000'

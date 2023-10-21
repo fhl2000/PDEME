@@ -1,0 +1,46 @@
+pde_name: "1D_diffusion_sorption"
+model_name: "DeepONet"
+if_training: True
+continue_training: False
+model_path: "./checkpoint/1D_diff-sorp_NA_NA/1d_diff-sorp_1024_100_lr0.001_bs50-best.pt"
+output_dir: "./checkpoint/"
+save_period: 20
+seed: 0
+training_type: "single"   # or autoregressive
+initial_step: 10
+epochs: 500
+
+model:
+  act: 'tanh'
+  in_channels : 1   # input
+  out_channels : 1   # output
+
+train:
+  scenario : "1D_diffusion_sorption"
+  save_name : "1d_diff-sorp_1024_100"
+
+
+dataset:
+  name : "1D_diffusion_sorption"
+  single_file: False
+  file_name: "1D_diff-sorp_NA_NA.h5"
+  saved_folder: "/data1/zhouziyang/datasets/pdebench/1D/diffusion-sorption/"
+  reduced_resolution: 1
+  reduced_resolution_t: 1
+  reduced_batch: 1
+  test_ratio: 0.1
+# dataloader相关参数
+dataloader:
+  batch_size: 50
+  num_workers: 1
+  pin_memory: False
+# 优化器相关参数
+optimizer:
+  name: 'Adam'
+  lr: 1.e-3
+  weight_decay : 1.e-4
+# scheduler相关参数
+scheduler:
+  name: "StepLR"
+  step_size: 100
+  gamma: 0.5

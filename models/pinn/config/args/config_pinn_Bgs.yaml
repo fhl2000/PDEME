@@ -1,0 +1,17 @@
+model_name: 'PINN'
+
+scenario: 'burgers'
+model_update: 500
+filename: '2D_Burgers_Nu0.001.hdf5'
+epochs: 10000
+learning_rate: 1.e-3
+seed: '0000'
+
+
+root_path: '/data1/zhouziyang/datasets/pdebench/2D/Burgers'
+val_num: 1
+if_periodic_bc: False
+aux_params: [0.001]
+# unused
+input_ch: 0
+output_ch: 1

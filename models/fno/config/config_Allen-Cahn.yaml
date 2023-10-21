@@ -1,0 +1,43 @@
+pde_name: "1D_Allen_Cahn"
+model_name: "FNO"
+if_training: False
+continue_training: False
+model_path: "./checkpoint/1D_Allen-Cahn_0.0001_5/1D_Allen-Cahn_0.0001_5_FNO-best.pt"
+output_dir: "./checkpoint/"
+save_period: 20
+# 训练相关参数
+seed: 0
+training_type: "autoregressive"
+pushforward: True
+t_train: 201
+initial_step: 10
+unroll_step: 20
+epochs: 500
+# 数据集相关参数 
+dataset:
+  single_file: True
+  file_name: "1D_Allen-Cahn_0.0001_5.hdf5"
+  saved_folder: "/data1/zhouziyang/datasets/pdebench/1D/Allen-Cahn/"
+  reduced_resolution: 2
+  reduced_resolution_t: 2
+  reduced_batch: 1
+# dataloader相关参数
+dataloader:
+  batch_size: 64
+  num_workers: 4
+  pin_memory: False
+# 模型相关参数
+model:
+  num_channels: 1
+  modes: 12
+  width: 20
+# 优化器相关参数
+optimizer:
+  name: 'Adam'
+  lr: 1.e-3
+  weight_decay: 1.e-4
+# scheduler相关参数
+scheduler:
+  name: "StepLR"
+  step_size: 100
+  gamma: 0.5

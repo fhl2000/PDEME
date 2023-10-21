@@ -1,0 +1,46 @@
+pde_name: "2D_diffusion_reaction"
+model_name: "DeepONet"
+if_training: False
+continue_training: False
+model_path: "./checkpoint/2D_diff-react_NA_NA/2d_diff-react_128_lr0.001_bs20-best.pt"
+output_dir: "./checkpoint/"
+save_period: 10
+seed: 0 
+initial_step: 1
+epochs: 200
+
+model:
+  size: 128
+  act: 'tanh'
+  in_channels : 2   # input
+  out_channels : 2   # output
+  query_dim: 3
+  base_model: "MLP"
+train:
+  scenario : "2D_diffusion_reaction"
+  save_name : "2d_diff-react_128"
+  training_type: "single"
+dataset:
+  name : "2D_diff-react"
+  single_file: False
+  file_name: "2D_diff-react_NA_NA.h5"
+  saved_folder: "/data1/zhouziyang/datasets/pdebench/2D/diffusion-reaction/"
+  reduced_resolution: 1
+  reduced_resolution_t: 1
+  reduced_batch: 1
+  test_ratio: 0.1
+# dataloader相关参数
+dataloader:
+  batch_size: 20
+  num_workers: 1
+  pin_memory: False
+# 优化器相关参数
+optimizer:
+  name: 'Adam'
+  lr: 1.e-3
+  weight_decay : 1.e-4
+# scheduler相关参数
+scheduler:
+  name: "StepLR"
+  step_size: 50
+  gamma: 0.5
